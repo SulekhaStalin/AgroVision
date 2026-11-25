@@ -1,0 +1,373 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AgroVision | Smart Agriculture Platform</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fbf6;
+            color: #243b2a;
+        }
+
+        .navbar {
+            background: white;
+            padding: 18px 7%;
+        }
+
+        .brand {
+            color: #218c45;
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .hero {
+            min-height: 540px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(90deg,
+                rgba(9,55,28,.88), rgba(9,55,28,.2)),
+                url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600')
+                center/cover;
+            color: white;
+            padding: 70px 9%;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 5vw, 65px);
+            font-weight: bold;
+        }
+
+        .green-btn {
+            background: #218c45;
+            color: white;
+            padding: 13px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .green-btn:hover {
+            background: #176b3a;
+            color: white;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            height: 100%;
+            box-shadow: 0 4px 18px rgba(0,0,0,.05);
+            transition: .3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 22px rgba(0,0,0,.1);
+        }
+
+        .portal-btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 9px 18px;
+            border-radius: 7px;
+            margin: 5px 3px;
+            font-weight: 600;
+        }
+
+        .register-btn {
+            background: #218c45;
+            color: white;
+        }
+
+        .login-btn {
+            border: 1px solid #218c45;
+            color: #218c45;
+        }
+
+        .register-btn:hover {
+            background: #176b3a;
+            color: white;
+        }
+
+        .login-btn:hover {
+            background: #218c45;
+            color: white;
+        }
+
+        .plant-btn {
+            background: #e8f5e9;
+            color: #218c45;
+            border: 1px solid #218c45;
+        }
+
+        .plant-btn:hover {
+            background: #218c45;
+            color: white;
+        }
+
+        .weather-btn {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 1px solid #1565c0;
+        }
+
+        .weather-btn:hover {
+            background: #1565c0;
+            color: white;
+        }
+
+        .service-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        footer {
+            background: #143c25;
+            color: white;
+            padding: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+
+        <a class="navbar-brand brand" href="/">
+            🌱 AgroVision
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+            <div class="navbar-nav ms-auto">
+
+                <a class="nav-link" href="#home">Home</a>
+                <a class="nav-link" href="#services">Services</a>
+
+                <a class="nav-link" href="{% url 'plant_checker' %}">
+                    Plant Health Checker
+                </a>
+
+                <a class="nav-link" href="{% url 'weather_home' %}">
+                    Weather
+                </a>
+
+                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="#contact">Contact</a>
+
+                <a class="nav-link fw-bold text-success"
+                   href="{% url 'farmer_login' %}">
+                    Farmer Login
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="col-lg-8">
+
+            <h1>Growing a Smarter Future with Agriculture</h1>
+
+            <p class="lead my-4">
+                Empowering farmers through technology,
+                innovation and smart agricultural solutions.
+            </p>
+
+            <a href="{% url 'farmer_register' %}" class="green-btn">
+                Register as Farmer →
+            </a>
+
+            <a href="{% url 'plant_checker' %}" class="green-btn ms-2">
+                🌿 Check Plant Health
+            </a>
+
+            <a href="{% url 'weather_home' %}" class="green-btn ms-2">
+                🌦️ Check Weather
+            </a>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- SERVICES SECTION -->
+<section class="container py-5" id="services">
+
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Our Services</h2>
+        <p>Technology-driven solutions for modern agriculture.</p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- FARMER PORTAL -->
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+
+                <div class="service-icon">👨‍🌾</div>
+
+                <h3>Farmer Portal</h3>
+
+                <p>
+                    Manage crop listings, farmer profiles,
+                    harvest reminders and sales.
+                </p>
+
+                <a href="{% url 'farmer_register' %}"
+                   class="portal-btn register-btn">
+                    Register
+                </a>
+
+                <a href="{% url 'farmer_login' %}"
+                   class="portal-btn login-btn">
+                    Login
+                </a>
+
+            </div>
+        </div>
+
+
+        <!-- CUSTOMER PORTAL -->
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+
+                <div class="service-icon">🛒</div>
+
+                <h3>Customer Portal</h3>
+
+                <p>
+                    Explore agricultural products
+                    and purchase crops directly.
+                </p>
+
+                <span class="text-muted">
+                    Customer module coming soon.
+                </span>
+
+            </div>
+        </div>
+
+
+        <!-- GOVERNMENT PORTAL -->
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+
+                <div class="service-icon">🏛️</div>
+
+                <h3>Government Portal</h3>
+
+                <p>
+                    Monitor agricultural activities,
+                    government schemes and inventory.
+                </p>
+
+                <span class="text-muted">
+                    Government module coming soon.
+                </span>
+
+            </div>
+        </div>
+
+
+        <!-- PLANT HEALTH CHECKER -->
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+
+                <div class="service-icon">🌿</div>
+
+                <h3>Plant Health Checker</h3>
+
+                <p>
+                    Upload a plant leaf image to identify
+                    the plant and detect possible diseases
+                    using AI technology.
+                </p>
+
+                <a href="{% url 'plant_checker' %}"
+                   class="portal-btn plant-btn">
+                    Check Plant Health →
+                </a>
+
+            </div>
+        </div>
+
+
+        <!-- WEATHER FORECAST -->
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+
+                <div class="service-icon">🌦️</div>
+
+                <h3>Weather Forecast</h3>
+
+                <p>
+                    Check current weather conditions,
+                    temperature, humidity, wind speed
+                    and 5-day weather forecasts.
+                </p>
+
+                <a href="{% url 'weather_home' %}"
+                   class="portal-btn weather-btn">
+                    Check Weather →
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ABOUT SECTION -->
+<section class="container py-5 text-center" id="about">
+
+    <h2 class="fw-bold">About AgroVision</h2>
+
+    <p class="mt-3">
+        AgroVision connects farmers, customers and government
+        through a unified digital agriculture platform.
+        Our goal is to make agriculture smarter through
+        innovative technology and AI-powered solutions.
+    </p>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer class="text-center" id="contact">
+
+    <h4>🌱 AgroVision</h4>
+
+    <p>Smart Agriculture. Better Tomorrow.</p>
+
+    <small>© 2026 AgroVision. All rights reserved.</small>
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
